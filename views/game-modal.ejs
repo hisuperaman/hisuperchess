@@ -1,0 +1,45 @@
+<div id="gameModal" style="display: none;" class="absolute top-0 w-full h-full flex justify-center items-center">
+
+    <div class="relative bg-dark-secondaryButton rounded-lg w-[60%] h-[45%] flex flex-col items-center gap-4 p-4">
+        <!-- winner and reason -->
+        <div class="flex flex-col items-center">
+            <div class="font-bold text-xl" id="gameModalResultText">Black Won</div>
+            <div class="opacity-80" id="gameModalResultReasonText">on time</div>
+        </div>
+
+        <!-- game controls -->
+        <div class="flex flex-col gap-4 w-full text-sm sm:text-base">
+            <button type="button" onclick="closeGameModal()"
+                class="shadow-inner border-b-4 border-[#305db0] bg-dark-primaryButton flex px-2 py-4 justify-center relative rounded-md hover:brightness-125">
+                <div class="flex items-center gap-2 font-semibold text-xl">
+                    <p>Okay</p>
+                </div>
+            </button>
+            <div class="flex gap-3">
+                <button type="button"
+                    class="flex-1 bg-dark-tertiary flex px-2 py-4 justify-center relative rounded-md hover:brightness-125">
+                    <div class="flex items-center gap-2 font-medium">
+                        New 5 min
+                    </div>
+                </button>
+                <button type="button"
+                    class="flex-1 bg-dark-tertiary flex px-2 py-4 justify-center relative rounded-md hover:brightness-125">
+                    <div class="flex items-center gap-2 font-medium">
+                        Rematch
+                    </div>
+                </button>
+            </div>
+        </div>
+
+
+        <!-- close button -->
+        <button class="absolute right-2 top-2 text-gray-500 hover:brightness-200" onclick="closeGameModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                viewBox="0 0 384 512">
+                <path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+            </svg>
+        </button>
+    </div>
+
+</div>

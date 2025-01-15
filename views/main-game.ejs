@@ -1,0 +1,48 @@
+<div class="flex flex-col px-2 py-3 gap-2 relative w-full sm:w-auto">
+
+    <!-- player1 status -->
+    <div class="flex justify-between">
+        <div class="flex gap-2">
+            <div class="h-10 w-10 bg-dark-tertiary flex justify-center items-center text-dark-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                    viewBox="0 0 448 512">
+                    <path
+                        d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
+                </svg>
+            </div>
+            <div class="text-sm font-semibold" id="opponentNameText">Opponent</div>
+        </div>
+        <div class="text-white bg-dark-secondary text-xl w-24 pt-1 px-2 flex justify-end items-center">
+            <p id="opponentTimerText" class="">05:00</p>
+        </div>
+    </div>
+
+    <div id="board" class="w-full sm:w-[500px]"></div>
+
+
+    <!-- player2 status -->
+    <div class="flex justify-between">
+        <div class="flex gap-2">
+            <div class="h-10 w-10 bg-dark-tertiary flex justify-center items-center text-dark-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                    viewBox="0 0 448 512">
+                    <path
+                        d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
+                </svg>
+            </div>
+            <div class="text-sm font-semibold" id="myNameText">
+                <%= user.name %>
+            </div>
+        </div>
+        <div class="text-white bg-dark-secondary text-xl w-24 pt-1 px-2 flex justify-end items-center">
+            <p id="myTimerText" class="">05:00</p>
+        </div>
+    </div>
+
+    <div>
+        <p id="gameStatus">White to move</p>
+    </div>
+
+
+    <%- include('game-modal') %>
+</div>

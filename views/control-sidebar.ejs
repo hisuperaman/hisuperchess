@@ -1,0 +1,164 @@
+<div class="bg-dark-secondary h-screen flex flex-col overflow-auto w-full sm:w-72 ">
+
+    <div class="mb-8"></div>
+
+    <div id="beforeStartControls" class="flex flex-col p-5 gap-4">
+        <button type="button" onclick="showHideTimerSelector()" id="timerSelectorButton"
+            class="bg-dark-tertiary flex px-2 py-4 justify-center relative rounded-md hover:brightness-125">
+            <div class="flex items-center gap-2 font-medium">
+                <input type="hidden" name="" id="timerInput" value="5">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        viewBox="0 0 512 512">
+                        <path
+                            d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                    </svg>
+                </div>
+                <p id="currentTimerText">5 min</p>
+            </div>
+            <div id="toggleTimerSelectorIcon" class="absolute right-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    viewBox="0 0 320 512">
+                    <path
+                        d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+                </svg>
+            </div>
+        </button>
+
+
+        <!-- timer selector -->
+        <div id="timerSelector" style="display: none;" class="flex flex-col gap-3 text-sm font-medium">
+
+            <div class="flex flex-col gap-2">
+                <div class="flex items-center gap-1">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                            viewBox="0 0 512 512">
+                            <path
+                                d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                        </svg>
+                    </div>
+                    <p>Blitz</p>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="handleTimerChange(event, 1)" class="bg-dark-tertiary py-3 px-4 rounded-lg hover:brightness-125 cursor-pointer">
+                        1 min
+                    </button>
+                    <button onclick="handleTimerChange(event, 3)" class="bg-dark-tertiary py-3 px-4 rounded-lg hover:brightness-125 cursor-pointer">
+                        3 min
+                    </button>
+                    <button onclick="handleTimerChange(event, 5)" class="bg-dark-tertiary py-3 px-4 rounded-lg hover:brightness-125 cursor-pointer activeTimer">
+                        5 min
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <div class="flex items-center gap-1">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                            viewBox="0 0 512 512">
+                            <path
+                                d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                        </svg>
+                    </div>
+                    <p>Rapid</p>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="handleTimerChange(event, 10)" class="bg-dark-tertiary py-3 px-4 rounded-lg hover:brightness-125 cursor-pointer">
+                        10 min
+                    </button>
+                    <button onclick="handleTimerChange(event, 20)" class="bg-dark-tertiary py-3 px-4 rounded-lg hover:brightness-125 cursor-pointer">
+                        20 min
+                    </button>
+                    <button onclick="handleTimerChange(event, 30)" class="bg-dark-tertiary py-3 px-4 rounded-lg hover:brightness-125 cursor-pointer">
+                        30 min
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- fill room id and hide Join button on clicking Host -->
+        <button type="button" onclick="handleHostClick()" id="hostButton"
+            class="shadow-inner border-b-4 border-[#305db0] bg-dark-primaryButton flex px-2 py-4 justify-center relative rounded-md hover:brightness-125">
+            <div class="flex items-center gap-2 font-semibold text-xl">
+                <p>Host</p>
+            </div>
+        </button>
+        
+        <button type="button" id="cancelButton" onclick="handleCancelHostClick()"
+            class="relative shadow-inner border-b-4 border-[#ff5980] hidden bg-dark-dangerButton flex px-2 py-4 justify-center relative rounded-md hover:brightness-125">
+            <div class="flex items-center gap-2 font-semibold text-xl">
+                <p>Cancel</p>
+            </div>
+            <div class="absolute right-2 bottom-2 text-sm" id="cancelButtonCancelTimer">
+                05:00
+            </div>
+        </button>
+        
+
+        <div class="bg-dark-tertiary rounded-lg overflow-hidden">
+            <input type="text" name="roomId" placeholder="room_id" id="roomId"
+                class="w-full outline-none focus:ring-2 focus:ring-dark-primaryButton bg-inherit p-2">
+        </div>
+
+
+        <!-- Join part -->
+        <button type="button" id="joinButton" onclick="handleJoinClick()"
+            class="shadow-inner border-b-4 border-[#305db0] bg-dark-primaryButton flex px-2 py-4 justify-center relative rounded-md hover:brightness-125">
+            <div class="flex items-center gap-2 font-semibold text-xl">
+                <p>Join</p>
+            </div>
+        </button>
+
+
+        <button type="button" id="passPlayButton"
+            class="mt-8 border-b-4 border-black bg-dark-secondaryButton flex px-2 py-4 justify-center relative rounded-md hover:brightness-110">
+            <div class="flex items-center gap-2 font-semibold text-xl">
+                <p>Pass n Play</p>
+            </div>
+        </button>
+    </div>
+
+    <div id="afterStartControls" class="hidden flex flex-col p-5 gap-4">
+        <button type="button" onclick="handleResignClick(event)"
+            class="shadow-inner border-b-4 border-[#305db0] bg-dark-primaryButton flex px-2 py-4 justify-center relative rounded-md hover:brightness-125">
+            <div class="flex items-center gap-2 font-semibold text-xl">
+                <p>Resign</p>
+            </div>
+        </button>
+    </div>
+
+</div>
+
+
+
+<script>
+    const caretDownIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    viewBox="0 0 320 512">
+                    <path
+                        d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+                </svg>`
+
+    const caretUpIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    viewBox="0 0 320 512">
+                    <path
+                        d="M182.6 137.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8l256 0c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z" />
+                </svg>`
+    const timerSelector = document.getElementById('timerSelector')
+    const toggleTimerSelectorIcon = document.getElementById('toggleTimerSelectorIcon')
+
+    function showHideTimerSelector() {
+        if (timerSelector.style.display == 'none') {
+            timerSelector.style.display = 'flex'
+            toggleTimerSelectorIcon.innerHTML = caretUpIcon
+        }
+        else {
+            timerSelector.style.display = 'none'
+            toggleTimerSelectorIcon.innerHTML = caretDownIcon
+        }
+
+    }
+</script>
